@@ -9,19 +9,16 @@ const neighbor = (x, y) => {
   ]
 }
 
-const notice = (x, y) => {
-  const res = {}
-  const lifes = neighbor(x,y)
-  lifes.map(it => {res[it] = 1})
-
-  return res
+const notice = (pos) => {
+  return neighbor(pos[0],pos[1])
+    .reduce((acm, it) => {
+      acm[it] = 1
+      return acm
+  }, {})
 }
 
-//TODO: これをリファクタリングするところから
-const notice2 = (xy) => notice(xy[0], xy[1])
-
 const noticeAll = (lifes) => {
-  const temp = lifes.map(it => notice2(it))
+  const temp = lifes.map(it => notice(it))
   console.log(temp)
   return {
               [[1,0]]:1,[[2,0]]:1,[[3,0]]:1,
@@ -59,7 +56,7 @@ describe('八近傍に活性通知のインクリメントができること', (
       [[1,1]]:1,          [[3,1]]:1,
       [[1,2]]:1,[[2,2]]:1,[[3,2]]:1
     }
-    expect(notice(2,1)).toEqual(exp)
+    expect(notice([2,1])).toEqual(exp)
   })
   it('1-2 の八近傍に生存通知ができること', () => {
     const exp = {
@@ -67,7 +64,7 @@ describe('八近傍に活性通知のインクリメントができること', (
       [[0,2]]:1,          [[2,2]]:1,
       [[0,3]]:1,[[1,3]]:1,[[2,3]]:1
     }
-    expect(notice(1,2)).toEqual(exp)
+    expect(notice([1,2])).toEqual(exp)
   })
   xit('1-2 の八近傍に生存通知ができること', () => {
     const exp = {
