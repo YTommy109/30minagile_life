@@ -1,6 +1,16 @@
 // 1 オリジン
 // ステートレス (オブジェクト指向は使わないつもり)
 
+const sumHash = (objs) => {
+  const res = {}
+  objs.map(it => {
+    Object.entries(it).forEach(([k,v])=>{
+      res[k] = (res[k] || 0) + v
+    })
+  })
+  return res
+}
+
 const neighbor = (x, y) => {
   return [
     [x-1,y-1],[x,y-1],[x+1,y-1],
@@ -65,6 +75,19 @@ describe('八近傍に活性通知のインクリメントができること', (
       [[0,3]]:1,[[1,3]]:1,[[2,3]]:1
     }
     expect(notice([1,2])).toEqual(exp)
+  })
+  it('連想配列の足し算ができること-1', () => {
+    const org1 = {'a': 1}
+    const org2 = {'a': 3, 'b':1}
+    const exp = {'a':4, 'b':1}
+    expect(sumHash([org1, org2])).toEqual(exp)
+  })
+  it('連想配列の足し算ができること-2', () => {
+    const org1 = {'a': 1, 'c': 1}
+    const org2 = {'a': 3, 'b':1}
+    const org3 = {'c': 1}
+    const exp = {'a':4, 'b':1, 'c':2}
+    expect(sumHash([org1, org2, org3])).toEqual(exp)
   })
   xit('1-2 の八近傍に生存通知ができること', () => {
     const exp = {
