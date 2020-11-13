@@ -2,13 +2,12 @@
 // ステートレス (オブジェクト指向は使わないつもり)
 
 const sumHash = (objs) => {
-  const res = {}
-  objs.map(it => {
+  return objs.reduce((acm, it) => {
     Object.entries(it).forEach(([k,v])=>{
-      res[k] = (res[k] || 0) + v
+      acm[k] = (acm[k] || 0) + v
     })
-  })
-  return res
+    return acm
+  }, {})
 }
 
 const neighbor = (x, y) => {
