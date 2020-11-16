@@ -82,7 +82,7 @@ describe('次世代の判定ができること', () => {
   it('活性セルの周囲のセルが 1 なら、不活性であること', () => {
     expect(life.nextCell(true, 1)).toBe(false)
   })
-  it('周囲のセルが 3 なら、活性であること', () => {
+  it('不活性セルの周囲のセルが 3 なら、活性であること', () => {
     expect(life.nextCell(false, 3)).toBe(true)
   })
   it.todo('過密')
