@@ -23,5 +23,10 @@ export const life = {
   },
   noticeAll: lifes => {
     return life.sumHash(lifes.map(it => life.notice(it)))
+  },
+  nextCell: (state, population) => {
+    if (population === 1) return false
+    if (population === 3) return true
+    return state
   }
 }
