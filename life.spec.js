@@ -73,16 +73,16 @@ describe('八近傍に活性通知のインクリメントができること', (
 })
 
 describe('次世代の判定ができること', () => {
-  it('不活性セルの周囲のセルが 2 なら、不活性活性であること', () => {
+  it('不活性セルの周囲のセルが 2 なら、不活性であること', () => {
     expect(life.nextCell(false, 2)).toBe(false)
   })
   it('活性セルの周囲のセルが 2 なら、活性であること', () => {
     expect(life.nextCell(true, 2)).toBe(true)
   })
-  it('活性セルの周囲のセルが一つなら、不活性であること', () => {
+  it('活性セルの周囲のセルが 1 なら、不活性であること', () => {
     expect(life.nextCell(true, 1)).toBe(false)
   })
-  it('周囲のセルが三つなら、活性であること', () => {
+  it('不活性セルの周囲のセルが 3 なら、活性であること', () => {
     expect(life.nextCell(false, 3)).toBe(true)
   })
   it.todo('過密')
