@@ -85,8 +85,19 @@ describe('次世代の判定ができること', () => {
   it('不活性セルの周囲のセルが 3 なら、活性であること', () => {
     expect(life.nextCell(false, 3)).toBe(true)
   })
-  it.todo('過密')
+  it('活性セルの周囲のセルが 4 なら、不活性であること', () => {
+    expect(life.nextCell(true, 4)).toBe(false)
+  })
 })
 describe('出力できること', () => {
+  xit('ブロックパターンが動くこと', () => {
+    const src = [[2,2], [3,2], [2,3], [3,3]]
+    expect(life.nextLife(src)).toEqual(src)
+  })
+  xit('ブリンカーパターンが動くこと', () => {
+    const src = [[2,1], [2,2], [2,3]]
+    const exp = [[1,2], [2,2], [3,2]]
+    expect(life.nextLife(src)).toEqual(exp)
+  })
   it.todo('コンソールに出力できること')
 })

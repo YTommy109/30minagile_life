@@ -24,9 +24,22 @@ export const life = {
   noticeAll: lifes => {
     return life.sumHash(lifes.map(it => life.notice(it)))
   },
-  nextCell: (state, population) => {
-    if (population === 1) return false
-    if (population === 3) return true
-    return state
+  nextCell: (state, pop) => {
+    if (pop === 3) return true
+    if (pop === 2) return state
+
+    return false
+  },
+  nextLife: (lifes) => {
+    //FIXME: 未完成
+    const pops = life.noticeAll(lifes)
+    const ng = Object.entries(pops).map(([pos, pop]) => {
+      const state = lifes.includes(pos)
+      const temp = life.nextCell(state, pop)
+  
+      return temp ? JSON.parse(`[${pos}]`) : ''
+    })
+
+    return ng.filter(it => it !== '')
   }
 }
