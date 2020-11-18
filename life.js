@@ -34,15 +34,17 @@ export const life = {
   },
   nextLife: (lifes) => {
     const pops = life.noticeAll(lifes)
+    lifes = lifes.map(String)
     const ng = Object.entries(pops).map(([pos, pop]) => {
       const state = lifes.some(it => {
         return JSON.stringify(it) === `[${pos}]`
       })
       const temp = life.nextCell(state, pop)
   
-      return temp ? JSON.parse(`[${pos}]`) : ''
+      return temp ? pos : ''
     })
 
     return ng.filter(it => it !== '')
+      .map(pos => pos.split(',').map(it => +it))
   }
 }
