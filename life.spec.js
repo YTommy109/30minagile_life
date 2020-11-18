@@ -21,7 +21,7 @@ describe('八近傍に活性通知のインクリメントができること', (
       [0,2],      [2,2],
       [0,3],[1,3],[2,3]
     ]
-    expect(life.neighbor(1,2)).toEqual(exp)
+    expect(life.neighbor([1,2])).toEqual(exp)
   })
   it('2-1 の八近傍の座標を取得できること', () => {
     const exp = [
@@ -29,36 +29,20 @@ describe('八近傍に活性通知のインクリメントができること', (
       [1,1],      [3,1],
       [1,2],[2,2],[3,2]
     ]
-    expect(life.neighbor(2,1)).toEqual(exp)
-  })
-  it('2-1 の八近傍に生存通知ができること', () => {
-    const exp = {
-      [[1,0]]:1,[[2,0]]:1,[[3,0]]:1,
-      [[1,1]]:1,          [[3,1]]:1,
-      [[1,2]]:1,[[2,2]]:1,[[3,2]]:1
-    }
-    expect(life.notice([2,1])).toEqual(exp)
-  })
-  it('1-2 の八近傍に生存通知ができること', () => {
-    const exp = {
-      [[0,1]]:1,[[1,1]]:1,[[2,1]]:1,
-      [[0,2]]:1,          [[2,2]]:1,
-      [[0,3]]:1,[[1,3]]:1,[[2,3]]:1
-    }
-    expect(life.notice([1,2])).toEqual(exp)
+    expect(life.neighbor([2,1])).toEqual(exp)
   })
   it('連想配列の足し算ができること-1', () => {
-    const org1 = {'a': 1}
-    const org2 = {'a': 3, 'b':1}
-    const exp = {'a':4, 'b':1}
-    expect(life.sumHash([org1, org2])).toEqual(exp)
+    const org1 = ['a']
+    const org2 = ['a', 'b']
+    const exp = {'a':2, 'b':1}
+    expect(life.countNeighbor([org1, org2])).toEqual(exp)
   })
   it('連想配列の足し算ができること-2', () => {
-    const org1 = {'a': 1, 'c': 1}
-    const org2 = {'a': 3, 'b':1}
-    const org3 = {'c': 1}
-    const exp = {'a':4, 'b':1, 'c':2}
-    expect(life.sumHash([org1, org2, org3])).toEqual(exp)
+    const org1 = ['a', 'c']
+    const org2 = ['a', 'b']
+    const org3 = ['c']
+    const exp = {'a':2, 'b':1, 'c':2}
+    expect(life.countNeighbor([org1, org2, org3])).toEqual(exp)
   })
   it('1-2, 2-1 の八近傍に生存通知ができること', () => {
     const exp = {
