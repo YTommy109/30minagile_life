@@ -3,6 +3,13 @@ import {life} from './life'
 // ステートレス (オブジェクト指向は使わないつもり)
 
 describe('初期処理ができること', () => {
+  it('サイズの初期値がゼロであること', () => {
+    expect(life.size).toEqual(0)
+  })
+  it('サイズを設定できること', () => {
+    life.size = 3
+    expect(life.size).toEqual(3)
+  })
 })
 describe('活性、不活性の状態変更ができること', () => {
   it.todo('座標を指定したら、活性すること')
@@ -90,11 +97,11 @@ describe('次世代の判定ができること', () => {
   })
 })
 describe('出力できること', () => {
-  xit('ブロックパターンが動くこと', () => {
+  it('ブロックパターンが動くこと', () => {
     const src = [[2,2], [3,2], [2,3], [3,3]]
-    expect(life.nextLife(src)).toEqual(src)
+    expect(new Set(life.nextLife(src))).toEqual(new Set(src))
   })
-  xit('ブリンカーパターンが動くこと', () => {
+  it('ブリンカーパターンが動くこと', () => {
     const src = [[2,1], [2,2], [2,3]]
     const exp = [[1,2], [2,2], [3,2]]
     expect(life.nextLife(src)).toEqual(exp)

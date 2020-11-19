@@ -1,4 +1,6 @@
+
 export const life = {
+  size: 0,
   sumHash: objs => {
     return objs.reduce((acm, it) => {
       Object.entries(it).forEach(([k,v])=>{
@@ -31,10 +33,11 @@ export const life = {
     return false
   },
   nextLife: (lifes) => {
-    //FIXME: 未完成
     const pops = life.noticeAll(lifes)
     const ng = Object.entries(pops).map(([pos, pop]) => {
-      const state = lifes.includes(pos)
+      const state = lifes.some(it => {
+        return JSON.stringify(it) === `[${pos}]`
+      })
       const temp = life.nextCell(state, pop)
   
       return temp ? JSON.parse(`[${pos}]`) : ''
