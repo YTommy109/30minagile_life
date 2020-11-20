@@ -34,15 +34,12 @@ export const life = {
   },
   nextLife: (lifes) => {
     const pops = life.noticeAll(lifes)
-    const ng = Object.entries(pops).map(([pos, pop]) => {
-      const state = lifes.some(it => {
-        return JSON.stringify(it) === `[${pos}]`
-      })
-      const temp = life.nextCell(state, pop)
-  
-      return temp ? JSON.parse(`[${pos}]`) : ''
-    })
-
-    return ng.filter(it => it !== '')
+    lifes = lifes.map(String)
+    return Object.entries(pops).reduce((acm, [pos, pop])=>{
+      const state = lifes.includes(pos)
+      const isActive = life.nextCell(state, pop)
+      if(isActive) acm.push(pos.split(',').map(it => +it))
+      return acm
+    }, [])
   }
 }

@@ -104,7 +104,7 @@ describe('出力できること', () => {
   it('ブリンカーパターンが動くこと', () => {
     const src = [[2,1], [2,2], [2,3]]
     const exp = [[1,2], [2,2], [3,2]]
-    expect(life.nextLife(src)).toEqual(exp)
+    expect(new Set(life.nextLife(src))).toEqual(new Set(exp))
   })
   it.todo('コンソールに出力できること')
 })
