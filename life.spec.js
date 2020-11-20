@@ -3,6 +3,9 @@ import {life} from './life'
 // ステートレス (オブジェクト指向は使わないつもり)
 
 describe('初期処理ができること', () => {
+  beforeEach(() => {
+    life.size = 0
+  })
   it('サイズの初期値がゼロであること', () => {
     expect(life.size).toEqual(0)
   })
@@ -106,5 +109,15 @@ describe('出力できること', () => {
     const exp = [[1,2], [2,2], [3,2]]
     expect(life.nextLife(src)).toEqual(exp)
   })
-  it.todo('コンソールに出力できること')
+  it('初期状態で1行分が表示されること', () => {
+    const exp = '□□□'
+    life.size = 3
+    expect(life.getRow()).toEqual(exp)
+  })
+  it('指定行の1行分が取得できること', () => {
+    const lifes = [[1,1], [2,1], [3,2]]
+    const exp = '□□■'
+    life.size = 3
+    expect(life.getRow(lifes, 2)).toEqual(exp)
+  })
 })

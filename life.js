@@ -44,5 +44,28 @@ export const life = {
     })
 
     return ng.filter(it => it !== '')
+  },
+  getRow: (lifes=[], y=1) => {
+    const data = new Array(life.size).fill('□')
+    const xs = lifes
+    .filter(([xx,yy]) => yy===y)
+    .map(([x, y]) => x-1)
+    xs.map(it => { data[it] = '■'})
+
+    return data.join('')
+  },
+  print: (lifes) => {
+    let cur = lifes
+    for (let tm=0; tm<5; tm++) {
+      for (let yy=1; yy<=life.size; yy++) {
+        console.log(life.getRow(cur, yy))
+      }
+      cur = life.nextLife(cur)
+      console.log('--- --- ---')
+    }
   }
 }
+
+life.size = 3
+const lifes = [[1,2], [2,2], [3,2]]
+life.print(lifes)
