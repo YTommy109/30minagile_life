@@ -12,7 +12,7 @@
     "jest-babel": "^1.0.1"
   },
   "scripts": {
-    "start": "babel-node life.js",
+    "start": "babel-node index.js",
     "test": "jest --watch"
   }
 }
