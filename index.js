@@ -1,5 +1,7 @@
-import {life} from './life'
+import {LifeGame} from './lifegame'
 
-life.size = 3
-const lifes = [[1,2], [2,2], [3,2]]
-life.print(lifes)
+
+const obj = new LifeGame(3, ['1,2', '2,2', '3,2'])
+obj.display()
+const obj2 = new LifeGame(3, obj.nextLife())
+obj2.display()
