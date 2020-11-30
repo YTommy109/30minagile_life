@@ -48,14 +48,12 @@ describe('ライフゲームルールに従って、活性/不活性を判定で
 })
 
 describe('ブリンカーパターンが動作すること', () => {
-  const bl1 = ['2,1', '2,2', '2,3']
-  const bl2 = ['1,2', '2,2', '3,2']
+  const obj1 = new LifeGame(3, ['2,1', '2,2', '2,3'])
+  const obj2 = new LifeGame(3, ['1,2', '2,2', '3,2'])
   it('パターン1からパターン2になること', () => {
-    const obj = new LifeGame(3, bl1)
-    expect(obj.nextLife()).toEqual(bl2)
+    expect(obj1.nextLife().lifes).toEqual(obj2.lifes)
   })
   it('パターン2からパターン1になること', () => {
-    const obj = new LifeGame(3, bl2)
-    expect(obj.nextLife()).toEqual(bl1)
+    expect(obj2.nextLife().lifes).toEqual(obj1.lifes)
   })
 })

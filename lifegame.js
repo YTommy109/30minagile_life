@@ -44,9 +44,11 @@ export class LifeGame {
    * @return {Array<string>} 活性セル座標の配列
    */
   nextLife() {
-    return Object.entries(this.population()).map(([pos, pop]) => 
-      this.judge(pop, this.lifes.includes(pos))?pos:null
-    ).filter(it=>it!==null)
+    return new LifeGame(
+      this.size,
+      Object.entries(this.population()).map(([pos, pop]) => 
+        this.judge(pop, this.lifes.includes(pos))?pos:null
+    ).filter(it=>it!==null))
   }
   // Deprecated
   display() {
